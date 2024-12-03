@@ -11,13 +11,13 @@ int main() {
 
     if (pid < 0) {
         // fork başarısız olursa
-        printf("Hata: Çocuk süreç oluşturulamadı.\n");
+        printf("Hata: Cocuk surec olusturulamadi.\n");
         exit(1); // Programı hata ile bitir
         
         
     } else if (pid == 0) {
         // Çocuk süreç
-        printf("Bu çocuk süreç! Dosya açmaya çalışıyorum...\n");
+        printf("Bu cocuk surec! Dosya acmaya calisiyorum...\n");
         
         
 
@@ -25,11 +25,11 @@ int main() {
         FILE *file = fopen("olmayan_dosya.txt", "r");
         if (file == NULL) {
             // Dosya açılamazsa abort() çağrılır
-            printf("Hata: Dosya bulunamadı. abort() çağrılıyor...\n");
+            printf("Hata: Dosya bulunamadi. abort() cagriliyor...\n");
             abort(); // Zorla çıkış
         } else {
             // Dosya açılırsa düzgün çıkış
-            printf("Dosya başarıyla açıldı.\n");
+            printf("Dosya basariyla acildi.\n");
             fclose(file);
             exit(0); // Düzgün çıkış
         }
@@ -38,18 +38,18 @@ int main() {
         
     } else {
         // Ana süreç
-        printf("Bu ana süreç. Çocuk süreci bekliyorum...\n");
+        printf("Bu ana surec. Cocuk sureci bekliyorum...\n");
 
         // Çocuk süreci bekle
         wait(&status);
 
         // Çocuk sürecin çıkış durumunu analiz et
         if (WIFEXITED(status)) {
-            printf("Çocuk süreç düzgün bir şekilde tamamlandı. Çıkış durumu: %d\n", WEXITSTATUS(status));
+            printf("Cocuk surec duzgun bir sekilde tamamlandi. Cikis durumu: %d\n", WEXITSTATUS(status));
         } else if (WIFSIGNALED(status)) {
-            printf("Çocuk süreç bir sinyal ile sonlandı. Sinyal numarası: %d\n", WTERMSIG(status));
+            printf("Cocuk surec bir sinyal ile sonlandi. Sinyal numarasi: %d\n", WTERMSIG(status));
         } else {
-            printf("Çocuk süreç beklenmedik bir şekilde sonlandı.\n");
+            printf("Cocuk surec beklenmedik bir sekilde sonlandi.\n");
         }
     }
 
